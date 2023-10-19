@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main data-title = "{{title}}" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+	<div class="row g-3 mt-3">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-body">
+
+					<input type="hidden" value="agents" name="type" id="type">
+					<div class="row">
+                        <div class="col-12">
+							<form action="" method="post" enctype="multipart/form-data">
+								<table width="100%" class="org_table">
+									<colgroup>
+										<col width="50%">
+										<col width="50%">
+									</colgroup>
+									<tbody>
+										<tr>
+											<td class="org_header" colspan="2">Подробная информация о заказе</td>
+										</tr>
+										<tr>
+											<th>Идентификационный номер:</th>
+											<td>{{ order.id }}</td>
+										</tr>
+										<tr>
+											<th>Имя заказа</th>
+											<td>{{ order.name }}</td>
+										</tr>
+										<tr>
+											<th>Стоимость заказа, рублей</th>
+											<td>{{ order.price }}</td>
+										</tr>
+										<tr>
+											<th>Количество</th>
+											<td>{{ order.amount }}</td>
+										</tr>
+										<tr>
+											<th>Менеджер</th>
+											<td>{{ order.user.username }}</td>
+										</tr>
+
+										<tr>
+											<th>Контрагент</th>
+											<td>{{ order.client.name }}</td>
+										</tr>
+									</tbody>
+								</table>
+								<a href="{{ url_for('update_order_page', order_id=order.id)}}" class="btn btn-primary active" role="button" aria-pressed="true">Редактировать</a>
+								<a href="{{ url_for('delete_orders', order_id=order.id) }}"><input type="submit" class="btn btn-danger" value="Удалить"></a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </main>
+
+{% endblock %}

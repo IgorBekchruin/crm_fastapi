@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="static/assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="{{ url_for('static', path='/assets/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+    <!-- <link href="static/assets/style.css" rel="stylesheet"> -->
+    <title>Все компании</title>
+  </head>
+  <body>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('get_main_page') }}">CRM</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Поиск" aria-label="Search"> -->
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="{{ url_for('logout_pages') }}">Выйти</a>
+    </li>
+  </ul>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Контрагенты</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item ">
+            <a class="nav-link " href="{{ url_for('get_clients') }}">
+              <span data-feather="file-text"></span>
+              Все контрагенты
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ url_for('create_clients_page') }}">
+              <span data-feather="file-text"></span>
+              Создать
+              <span data-feather="plus-circle"></span>
+            </a>
+          </li>
+        </ul>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Менеджеры</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('get_users') }}">
+              <span data-feather="users"></span>
+              Все менеджеры
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              Добавить
+              <span data-feather="plus-circle"></span>
+            </a>
+          </li> -->
+        </ul>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Заказы</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item ">
+              <a class="nav-link " href="{{ url_for('get_orders') }}">
+                <span data-feather="file-text"></span>
+                Все заказы
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ url_for('create_orders_page') }}">
+                <span data-feather="file-text"></span>
+                Создать заказ
+                <span data-feather="plus-circle"></span>
+              </a>
+            </li>
+          </ul>
+        <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Аналитика</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              Отчет 1
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              Отчет 2
+            </a>
+          </li>
+        </ul> -->
+      </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+  </div>
+</div>
+
+     <script src="{{ url_for('static', path='/assets/dist/js/bootstrap.bundle.min.js') }}"></script>
+     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+
+
+     <script src="{{ url_for('static', path='/js/dashboard.js') }}"></script>
+  </body>
+</html>
