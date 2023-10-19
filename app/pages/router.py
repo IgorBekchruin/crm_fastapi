@@ -223,7 +223,7 @@ async def get_orders(
     request: Request,
     current_user: User = Depends(get_current_user)
 ):
-    orders = await get_all_orders()
+    orders = await OrderDAO.find_all()
     return templates.TemplateResponse("orders/orders.html", {
                                                     "request": request,
                                                     "current_user": current_user,
