@@ -8,8 +8,15 @@ class Settings(BaseSettings):
     DB_PASS: str
     DB_NAME: str
 
+    REDIS_HOST: str
+    REDIS_PORT: int
+
     SECRET_AUTH: str
     ALGORITHM: str
+
+    POSTGRES_DB: str
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
 
     @property
     def DATABASE_URL(self):

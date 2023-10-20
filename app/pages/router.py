@@ -18,7 +18,7 @@ from app.users.user_dao import UserDAO
 
 router = APIRouter(
     prefix='/pages',
-    tags=['Pages']
+    tags=['CRM pages']
 )
 
 templates = Jinja2Templates(directory='app/templates')
@@ -63,13 +63,17 @@ async def get_main_page(
     request: Request,
     current_user: User = Depends(get_current_user)
 ):
-    clients = await ClinetDAO.find_all(10)
-    orders = await OrderDAO.find_all(10)
-    return templates.TemplateResponse("main.html", {
+    if current_user:
+        clients = await ClinetDAO.find_all(10)
+        orders = await OrderDAO.find_all(10)
+        return templates.TemplateResponse("main.html", {
                                                     "request": request,
                                                     "clients": clients,
                                                     "orders": orders,
                                                     })
+    else:
+        rr = RedirectResponse('/pages/signin', status_code=303)
+        return rr
 
 
 # routs for clients

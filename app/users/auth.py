@@ -25,7 +25,6 @@ async def register_user(user: UserCreate):
     user = UserSave(**{
         "username": user.username,
         "hashed_password": hashed_password,
-        "role_id": user.role_id,
     })
     await UserDAO.add(user)
     return {'user'}

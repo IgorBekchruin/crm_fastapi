@@ -12,7 +12,6 @@ class UserSchem(BaseModel):
 class UserCreate(BaseModel):
     username: str
     password: str
-    role_id: int = 1
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -20,6 +19,5 @@ class UserCreate(BaseModel):
 class UserSave(BaseModel):
     username: str
     hashed_password: str
-    role_id: int
 
     model_config = ConfigDict(from_attributes=True)

@@ -20,7 +20,7 @@ class User(Base):
     client: Mapped[List['Client']] = relationship(back_populates='user', lazy='joined')
     order: Mapped[List['Order']] = relationship(back_populates='user', lazy='joined')
 
-    role_id: Mapped[int] = mapped_column(ForeignKey('roles.id'))
+    role_id: Mapped[int] = mapped_column(ForeignKey('roles.id', ondelete="SET NULL"), nullable=True)
     role: Mapped['Role'] = relationship(backref='roles')
 
     def __str__(self):

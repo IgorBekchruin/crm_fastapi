@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from sqladmin import Admin
 from app.clients.admin import ClientAdmin
+from app.config import settings
 from app.orders.admin import OrderAdmin
 from app.users.admin import RoleAdmin, UserAdmin
 from app.clients.routers import router as client_router
@@ -38,5 +39,5 @@ admin.add_view(ClientAdmin)
 
 @app.on_event("startup")
 async def startup():
-    redis = aioredis.from_url("redis://localhost:6379")
+    redis = aioredis.from_url(f"redis://{settings.REDIS_HOST}:{settings.REDIS_PORT}")
     FastAPICache.init(RedisBackend(redis), prefix="cache")
