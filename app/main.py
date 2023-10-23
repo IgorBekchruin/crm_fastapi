@@ -1,26 +1,22 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from sqladmin import Admin
-from app.clients.admin import ClientAdmin
-from app.config import settings
-from app.orders.admin import OrderAdmin
-from app.users.admin import RoleAdmin, UserAdmin
-from app.clients.routers import router as client_router
-from app.orders.routers import router as order_router
-from app.pages.router import router as pages_router
-from app.users.auth import router as auth_router
-from app.database import engine
-
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
-from fastapi_cache.decorator import cache
-
 from redis import asyncio as aioredis
+from sqladmin import Admin
 
+from app.clients.admin import ClientAdmin
+from app.clients.routers import router as client_router
+from app.config import settings
+from app.database import engine
+from app.orders.admin import OrderAdmin
+from app.orders.routers import router as order_router
+from app.pages.router import router as pages_router
+from app.users.admin import RoleAdmin, UserAdmin
+from app.users.auth import router as auth_router
 
-app = FastAPI(
-    title="CRM App"
-)
+app = FastAPI(title="CRM App")
 
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
@@ -35,6 +31,20 @@ admin.add_view(UserAdmin)
 admin.add_view(RoleAdmin)
 admin.add_view(OrderAdmin)
 admin.add_view(ClientAdmin)
+
+origins = [
+    "http://localhost:8000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PATCH", "PUT"],
+    allow_headers=["Content-Type", "Set-Cookie", "Access-Control-Allow-Headers",
+                   "Access-Control-Allow-Origin", "Authorization"],
+)
+
 
 
 @app.on_event("startup")

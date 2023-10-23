@@ -1,5 +1,6 @@
-import jwt
 from datetime import datetime, timedelta
+
+import jwt
 
 from app.config import settings
 
@@ -15,7 +16,9 @@ def create_jwt_token(data: dict):
 
 def verify_jwt_token(token: str):
     try:
-        decoded_data = jwt.decode(token, settings.SECRET_AUTH, algorithms=[settings.ALGORITHM])
+        decoded_data = jwt.decode(
+            token, settings.SECRET_AUTH, algorithms=[settings.ALGORITHM]
+        )
         return decoded_data
     except jwt.PyJWTError:
         return None

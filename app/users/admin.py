@@ -9,4 +9,3 @@ class UserAdmin(ModelView, model=User):
 
 class RoleAdmin(ModelView, model=Role):
     column_list = [Role.id, User.username]
-

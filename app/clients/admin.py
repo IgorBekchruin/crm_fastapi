@@ -11,6 +11,5 @@ class ClientAdmin(ModelView, model=Client):
         Client.production,
         Client.contact,
         Client.last_contact,
-        Client.user_id
-        ]
-
+        Client.user_id,
+    ]

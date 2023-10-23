@@ -1,7 +1,8 @@
 from sqlalchemy import select
+
 from app.dao.base_dao import BaseDAO
-from app.orders.models import Order
 from app.database import async_session
+from app.orders.models import Order
 
 
 class OrderDAO(BaseDAO):
@@ -14,4 +15,3 @@ class OrderDAO(BaseDAO):
             query = select(cls.model).filter_by(user_id=model_column_id)
             res = await session.execute(query)
             return res.scalars().all()
-        
