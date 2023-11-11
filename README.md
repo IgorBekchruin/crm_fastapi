@@ -19,5 +19,5 @@ Frontend:
 * CSS
 * Bootstrap
 
-Added order caching using radishes. For a presentable look, a front-end part has been added.
-The project is designed in Docker and Docker Compos.
+Added order caching using redis. For a presentable look, a frontend part has been added.
+The project is designed in Docker and Docker-compose.
