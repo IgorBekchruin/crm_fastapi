@@ -33,7 +33,7 @@ admin.add_view(OrderAdmin)
 admin.add_view(ClientAdmin)
 
 origins = [
-    "http://localhost:8000",
+    "*",
 ]
 
 app.add_middleware(

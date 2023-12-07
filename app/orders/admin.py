@@ -9,6 +9,6 @@ class OrderAdmin(ModelView, model=Order):
         Order.name,
         Order.price,
         Order.amount,
-        Order.user_id,
-        Order.client_id,
+        Order.user,
+        Order.client,
     ]

@@ -26,7 +26,7 @@ class User(Base):
     role: Mapped["Role"] = relationship(backref="roles")
 
     def __str__(self):
-        return self.name
+        return self.username
 
 
 class Role(Base):
